@@ -2,6 +2,8 @@ class Api::PagesController < Api::ApisController
 
   before_filter :find_page, except: [:create, :index, :published_api_pages, :unpublished_api_pages]
 
+  #CRUD ...
+
   def total_words
     respond_with @page.total_words
   end
