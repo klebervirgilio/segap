@@ -1,5 +1,5 @@
 Pages::Application.routes.draw do
-  namespace :api, :defaults => {:format => /(json|xml)/} do
+  namespace :api, :defaults => {:format => 'json'} do
     resources :pages do
       member do
         get :total_words
