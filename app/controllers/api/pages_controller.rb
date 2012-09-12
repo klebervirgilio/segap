@@ -5,7 +5,7 @@ class Api::PagesController < Api::ApisController
   #CRUD ...
 
   def total_words
-    respond_with @page.total_words
+    respond_with [@page.total_words]
   end
 
   def publish

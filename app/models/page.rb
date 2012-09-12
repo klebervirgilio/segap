@@ -4,8 +4,8 @@ class Page < ActiveRecord::Base
   validates :title, uniqueness: true
   validates :title, :content, presence: true
 
-  def self.ordered(field="published_on",order='desc')
-    order("#{field} #{order}")
+  def self.ordered
+    order('published_on desc, created_at desc')
   end
 
   def self.published

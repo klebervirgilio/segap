@@ -133,26 +133,28 @@
         null,
         1,
         null,
+        null,
+        null,
         1,
+        2,
+        null,
+        null,
         1,
+        2,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
         null,
         null,
         1,
         1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        4,
+        8,
         null,
         null
       ],
@@ -189,7 +191,7 @@
         1,
         1,
         1,
-        1,
+        2,
         null,
         1,
         null,
@@ -200,8 +202,6 @@
         null,
         1,
         1,
-        null,
-        null,
         null,
         null
       ],
@@ -220,6 +220,8 @@
         null,
         null,
         null,
+        null,
+        1,
         null
       ],
       "/Users/kleber/bike_roar/pages/spec/models/page_spec.rb": [
@@ -244,6 +246,6 @@
         null
       ]
     },
-    "timestamp": 1347426745
+    "timestamp": 1347467074
   }
 }
