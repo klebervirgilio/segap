@@ -6,24 +6,24 @@
   Heroku: http://segap.herokuapp.com/
 
   URLS:
-    http://segap.herokuapp.com/api/pages/unpublished.(json|xml)
-    http://segap.herokuapp.com/api/pages/published.(json|xml)
-    http://segap.herokuapp.com/api/pages/:id/publish.(json|xml)
-    http://segap.herokuapp.com/api/pages/:id/total_words.(json|xml)
+    http://segap.herokuapp.com/api/pages/unpublished(.(json|xml))
+    http://segap.herokuapp.com/api/pages/published(.(json|xml))
+    http://segap.herokuapp.com/api/pages/:id/publish(.(json|xml))
+    http://segap.herokuapp.com/api/pages/:id/total_words(.(json|xml))
 
   rake routes #=>
 
-     total_words_api_page GET    /api/pages/:id/total_words(.:format) api/pages#total_words {:format=>/(json|xml)/}
-         publish_api_page POST   /api/pages/:id/publish(.:format)     api/pages#publish {:format=>/(json|xml)/}
-      published_api_pages GET    /api/pages/published(.:format)       api/pages#published {:format=>/(json|xml)/}
-    unpublished_api_pages GET    /api/pages/unpublished(.:format)     api/pages#unpublished {:format=>/(json|xml)/}
-                api_pages GET    /api/pages(.:format)                 api/pages#index {:format=>/(json|xml)/}
-                          POST   /api/pages(.:format)                 api/pages#create {:format=>/(json|xml)/}
-             new_api_page GET    /api/pages/new(.:format)             api/pages#new {:format=>/(json|xml)/}
-            edit_api_page GET    /api/pages/:id/edit(.:format)        api/pages#edit {:format=>/(json|xml)/}
-                 api_page GET    /api/pages/:id(.:format)             api/pages#show {:format=>/(json|xml)/}
-                          PUT    /api/pages/:id(.:format)             api/pages#update {:format=>/(json|xml)/}
-                          DELETE /api/pages/:id(.:format)             api/pages#destroy {:format=>/(json|xml)/}
+ total_words_api_page GET    /api/pages/:id/total_words(.:format) api/pages#total_words {:format=>"json"}
+     publish_api_page POST   /api/pages/:id/publish(.:format)     api/pages#publish {:format=>"json"}
+  published_api_pages GET    /api/pages/published(.:format)       api/pages#published {:format=>"json"}
+unpublished_api_pages GET    /api/pages/unpublished(.:format)     api/pages#unpublished {:format=>"json"}
+            api_pages GET    /api/pages(.:format)                 api/pages#index {:format=>"json"}
+                      POST   /api/pages(.:format)                 api/pages#create {:format=>"json"}
+         new_api_page GET    /api/pages/new(.:format)             api/pages#new {:format=>"json"}
+        edit_api_page GET    /api/pages/:id/edit(.:format)        api/pages#edit {:format=>"json"}
+             api_page GET    /api/pages/:id(.:format)             api/pages#show {:format=>"json"}
+                      PUT    /api/pages/:id(.:format)             api/pages#update {:format=>"json"}
+                      DELETE /api/pages/:id(.:format)             api/pages#destroy {:format=>"json"}
 
 </pre>
 

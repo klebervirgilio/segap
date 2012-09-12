@@ -12,4 +12,6 @@ Pages::Application.routes.draw do
       end
     end
   end
+
+  match '*path' => redirect('/')
 end
