@@ -13,6 +13,4 @@ FactoryGirl.define do
     content 'Pretty interesting published content'
     published_on Time.now
   end
-
-
 end

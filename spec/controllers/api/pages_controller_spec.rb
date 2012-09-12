@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Api::PagesController do
+  
+  #CRUD ...
 
   describe "GET total_of_words" do
     it "should return the total of words" do

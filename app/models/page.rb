@@ -13,7 +13,7 @@ class Page < ActiveRecord::Base
   end
 
   def self.unpublished
-    where('published_on > :now and published_on is null', now: Time.now)
+    where('published_on > :now or published_on is null', now: Time.now)
   end
 
   def total_words
