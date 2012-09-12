@@ -1,9 +1,10 @@
 source :rubygems
 
 gem 'rails', '3.2.8'
-gem 'sqlite3'
+gem 'pg'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'shoulda-matchers'
   gem 'pry'
   gem 'rspec-rails', '~> 2.10.1'
