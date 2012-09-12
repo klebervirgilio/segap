@@ -1,0 +1,6 @@
+FactoryGirl.define do
+  factory :valid_page, :class => Page do
+    title 'Pretty creative title'
+    conent 'Pretty interesting conent'
+  end
+end
