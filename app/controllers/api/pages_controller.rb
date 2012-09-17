@@ -7,18 +7,22 @@ class Api::PagesController < Api::ApisController
   end
 
   def update
-    @page.update_attributes!(params[:page])
-    respond_with @page, location: api_page_path(@page)
+    @page.update_attributes!(params[:page])   
+    respond_to do |format|
+      format.any(:xml, :json){ render request.format.to_sym => @page }
+    end
   end
 
   def destroy
-    @page.destroy
+    @page.destroy!
     respond_with [@page.destroyed?]
   end
 
   def create
     @page = Page.create!(params[:page])
-    respond_with @page, location: api_page_path(@page) 
+    respond_to do |format|
+      format.any(:xml, :json){ render request.format.to_sym => @page }
+    end
   end
 
   def show
@@ -40,6 +44,12 @@ class Api::PagesController < Api::ApisController
 
   def unpublished
     respond_with Page.unpublished.ordered
+  end
+
+  rescue_from 'ActiveRecord::RecordInvalid' do |e|
+    respond_to do |format|
+      format.any(:xml, :json){ render request.format.to_sym => e.record.errors.full_messages }
+    end
   end
 
   private
