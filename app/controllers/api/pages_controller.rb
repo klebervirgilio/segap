@@ -1,6 +1,6 @@
 class Api::PagesController < Api::ApisController
 
-  before_filter :find_page, except: [:published_api_pages, :unpublished_api_pages, :index, :create]
+  before_filter :find_page, except: [:published, :unpublished, :index, :create]
 
   def index
     respond_with Page.ordered
