@@ -14,8 +14,10 @@ class Api::PagesController < Api::ApisController
   end
 
   def destroy
-    @page.destroy!
-    respond_with [@page.destroyed?]
+    @page.destroy
+    respond_to do |format|
+      format.any(:xml, :json){ render request.format.to_sym => {:destroyed => "Page(#{params[:id]}) destroyed!"} }
+    end
   end
 
   def create
@@ -55,5 +57,6 @@ class Api::PagesController < Api::ApisController
   private
   def find_page
     @page = Page.find_by_id(params[:id])
+    return render :json => {:error => "Page(#{params[:id]}) not found"}, :status => 404  if @page.nil?
   end
 end
