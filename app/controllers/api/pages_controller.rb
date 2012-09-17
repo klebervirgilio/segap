@@ -1,8 +1,29 @@
 class Api::PagesController < Api::ApisController
 
-  before_filter :find_page, except: [:published_api_pages, :unpublished_api_pages]
+  before_filter :find_page, except: [:published_api_pages, :unpublished_api_pages, :index, :create]
 
-  #CRUD ...
+  def index
+    respond_with Page.ordered
+  end
+
+  def update
+    @page.update_attributes!(params[:page])
+    respond_with @page, location: api_page_path(@page)
+  end
+
+  def destroy
+    @page.destroy
+    respond_with [@page.destroyed?]
+  end
+
+  def create
+    @page = Page.create!(params[:page])
+    respond_with @page, location: api_page_path(@page) 
+  end
+
+  def show
+    respond_with @page, location: api_page_path(@page)
+  end
 
   def total_words
     respond_with [@page.total_words]
@@ -14,11 +35,11 @@ class Api::PagesController < Api::ApisController
   end
 
   def published
-    respond_with Page.published.ordered.all
+    respond_with Page.published.ordered
   end
 
   def unpublished
-    respond_with Page.unpublished.ordered.all
+    respond_with Page.unpublished.ordered
   end
 
   private

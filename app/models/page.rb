@@ -17,6 +17,6 @@ class Page < ActiveRecord::Base
   end
 
   def total_words
-    title.split(/\s+/).size + content.split(/\s+/).size
+    (title.scan(/\S+/) + content.scan(/\S+/)).size
   end
 end

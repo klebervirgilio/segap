@@ -1,8 +1,73 @@
 require 'spec_helper'
 
 describe Api::PagesController do
-  
-  #CRUD ...
+
+  describe "GET index" do
+    let!(:pages){ FactoryGirl.create_list(:published_page,3) }
+
+    context "json" do
+      it "should return all pages given the format" do
+
+        get :index, format: :json
+        pages.map(&:id).each {|page_id| response.body.should match "\"id\":#{page_id}"}
+      end
+    end
+
+    context "xml" do
+      it "should assigns all pages given the format" do
+
+        get :index, format: :xml
+        pages.map(&:id).each {|page_id| response.body.should match "<id type=\"integer\">#{page_id}</id>"}
+      end
+    end
+  end
+
+  describe "GET show" do
+    let!(:valid_page) { FactoryGirl.create(:valid_page)}
+    context 'json' do
+      it "should show the attributes for a page given the id" do
+
+        get :show, id: valid_page.id, format: :json
+        response.body.should match "\"id\":#{valid_page.id}"
+      end
+    end
+
+    context 'xml' do
+      it "should show the attributes for a page given the id" do
+
+        post :show, id: valid_page.id, format: :xml
+        response.body.should match "<id type=\"integer\">#{valid_page.id}</id>"
+      end
+    end
+  end
+
+  describe "PUT update" do
+    let!(:valid_page) { FactoryGirl.create(:valid_page)}
+    
+    it "should update the page" do
+      expect{
+        put :update, {id: valid_page.id, page: {title: "updated title"}, format: :json}
+      }.to change{[valid_page.reload.title, valid_page.reload.updated_at]}
+    end
+  end
+
+  describe "DELETE destroy" do
+    let!(:valid_page) { FactoryGirl.create(:valid_page)}
+
+    it "should destroy a page given the id" do
+      expect{
+        delete :destroy, id: valid_page.id
+      }.to change{Page.count}.by(-1)
+    end
+  end
+
+  describe "POST create" do
+    it "should create a new page given the params" do
+      expect{
+        post :create, page: FactoryGirl.attributes_for(:valid_page)
+      }.to change{Page.count}.by(1)
+    end
+  end
 
   describe "GET total_of_words" do
     let(:page){mock(Page, total_words: 100)}
@@ -30,7 +95,6 @@ describe Api::PagesController do
         response.body.should match(/100/)
       end
     end
-
   end
 
   describe "POST publish" do
